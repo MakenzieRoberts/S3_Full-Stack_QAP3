@@ -46,18 +46,20 @@ router.get("/:id/replace", async (req, res) => {
 router.get("/:id/edit", async (req, res) => {
 	if (DEBUG) console.log("film.Edit : " + req.params.id);
 	res.render("filmPatch.ejs", {
-		firstName: req.query.firstName,
-		lastName: req.query.lastName,
-		theId: req.params.id,
+		title: req.query.title,
+		releaseYear: req.query.releaseYear,
+		rating: req.query.rating,
+		id: req.params.id,
 	});
 });
 
 router.get("/:id/delete", async (req, res) => {
 	if (DEBUG) console.log("film.Delete : " + req.params.id);
 	res.render("filmDelete.ejs", {
-		firstName: req.query.firstName,
-		lastName: req.query.lastName,
-		theId: req.params.id,
+		title: req.query.title,
+		releaseYear: req.query.releaseYear,
+		rating: req.query.rating,
+		id: req.params.id,
 	});
 });
 
@@ -94,13 +96,15 @@ router.put("/:id", async (req, res) => {
 		res.render("503");
 	}
 });
+
 router.patch("/:id", async (req, res) => {
 	if (DEBUG) console.log("films.PATCH: " + req.params.id);
 	try {
 		await filmsDal.patchfilm(
 			req.params.id,
-			req.body.firstName,
-			req.body.lastName
+			req.body.title,
+			req.body.releaseYear,
+			req.body.rating
 		);
 		res.redirect("/films/");
 	} catch {
@@ -108,6 +112,7 @@ router.patch("/:id", async (req, res) => {
 		res.render("503");
 	}
 });
+
 router.delete("/:id", async (req, res) => {
 	if (DEBUG) console.log("films.DELETE: " + req.params.id);
 	try {

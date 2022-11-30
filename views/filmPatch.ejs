@@ -3,10 +3,11 @@
     <body>
         <%- include('./partials/nav.ejs') %>
         <div class="create content">
-            <form action="/films/<%= locals.theId %>?_method=PATCH" method="POST">
+            <form action="/films/<%= locals.id %>?_method=PATCH" method="POST">
                 <label>Edit film Names:</br>
-                    <input type="text" name="firstName" value="<%= locals.firstName %>" required>
-                    <input type="text" name="lastName" value="<%= locals.lastName %>" required>
+                    <input type="text" name="title" value="<%= locals.title %>" required>
+                    <input type="text" name="releaseYear" value="<%= locals.releaseYear %>" required>
+                    <input type="text" name="rating" value="<%= locals.rating %>" required>
                 </label></br>
                 <button>PATCH</button>
             </form>

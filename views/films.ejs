@@ -22,8 +22,8 @@
                                 <tr>
                                     <td><%= film.title %></td> <td><%= film.release_year %></td><td><%= film.rating %></td> 
                                     <td>
-                                        <a href="/films/<%=film._id%>/edit?firstName=<%=film.first_name%>&lastName=<%=film.last_name%>">edit</a>
-                                        <a href="/films/<%=film._id%>/delete?firstName=<%=film.first_name%>&lastName=<%=film.last_name%>">delete</a>
+                                        <a href="/films/<%=film._id%>/edit?title=<%=film.title%>&releaseYear=<%=film.release_year%>&rating=<%=film.rating%>">edit</a>
+                                        <a href="/films/<%=film._id%>/delete?title=<%=film.title%>&releaseYear=<%=film.release_year%>&rating=<%=film.rating%>">delete</a>
                                         <a href="/films/<%=film._id%>/replace?title=<%=film.title%>&releaseYear=<%=film.release_year%>&rating=<%=film.rating%>">replace</a>
                                     </td>
                                 </tr>

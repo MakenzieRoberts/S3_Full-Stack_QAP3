@@ -88,36 +88,37 @@ async function putfilm(id, title, releaseYear, rating) {
 	}
 }
 /* ******************************* new put try ****************************** */
-// async function patchfilm(id, fname, lname) {
-//   if(DEBUG) console.log("films.mongo.dal.patchfilm()");
-//   try {
-//     await dal.connect();
-//     const result = await dal.db("Auth").collection("film")
-//       .updateOne({_id: ObjectId(id)},
-//         {$set: {first_name: fname, last_name: lname}},
-//         {upsert: true, returnDocument: 'after'}
-//         );
-//     return result;
-//   } catch(error) {
-//     console.log(error);
-//   }
-// };
-// async function deletefilm(id) {
-//   if(DEBUG) console.log("films.mongo.dal.deletefilm()");
-//   try {
-//     await dal.connect();
-//     const result = dal.db("Auth").collection("film").deleteOne({ _id: ObjectId(id) });
-//     return result;
-//   } catch(error) {
-//     console.log(error);
-//   }
-// };
+async function patchfilm(id, title, releaseYear, rating) {
+  if(DEBUG) console.log("films.mongo.dal.patchfilm()");
+  try {
+    await dal.connect();
+    const result = await dal.db("fs_qap3_db").collection("dvds")
+      .updateOne({_id: ObjectId(id)},
+        {$set: {title: title, release_year: releaseYear, rating: rating}},
+        {upsert: true, returnDocument: 'after'}
+        );
+    return result;
+  } catch(error) {
+    console.log(error);
+  }
+};
+
+async function deletefilm(id) {
+  if(DEBUG) console.log("films.mongo.dal.deletefilm()");
+  try {
+    await dal.connect();
+    const result = await dal.db("fs_qap3_db").collection("dvds").deleteOne({ _id: ObjectId(id) });
+    return result;
+  } catch(error) {
+    console.log(error);
+  }
+};
 
 module.exports = {
 	getfilms,
 	getfilmByfilmId,
 	addfilm,
 	putfilm,
-	// patchfilm,
-	// deletefilm,
+	patchfilm,
+	deletefilm,
 };
