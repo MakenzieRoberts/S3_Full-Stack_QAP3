@@ -30,6 +30,7 @@ router.get("/:id", async (req, res) => {
 		res.json({ message: "Service Unavailable", status: 503 });
 	}
 });
+
 router.post("/", async (req, res) => {
 	if (DEBUG) {
 		console.log("ROUTE: /api/films/ POST");
@@ -75,30 +76,35 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
-router.patch('/:id', async (req, res) => {
-    if(DEBUG) console.log('ROUTE: /api/films PATCH ' + req.params.id);
-    try {
-        await filmsDal.patchfilm(req.params.id, req.body.title, req.body.releaseYear, req.body.rating);
-        res.statusCode = 200;
-        res.json({message: "OK", status: 200});
-    } catch {
-        // log this error to an error log file.
-        res.statusCode = 503;
-        res.json({message: "Service Unavailable", status: 503});
-    }
+router.patch("/:id", async (req, res) => {
+	if (DEBUG) console.log("ROUTE: /api/films PATCH " + req.params.id);
+	try {
+		await filmsDal.patchfilm(
+			req.params.id,
+			req.body.title,
+			req.body.releaseYear,
+			req.body.rating
+		);
+		res.statusCode = 200;
+		res.json({ message: "OK", status: 200 });
+	} catch {
+		// log this error to an error log file.
+		res.statusCode = 503;
+		res.json({ message: "Service Unavailable", status: 503 });
+	}
 });
 
-router.delete('/:id', async (req, res) => {
-    if(DEBUG) console.log('ROUTE: /api/films DELETE ' + req.params.id);
-    try {
-        await filmsDal.deletefilm(req.params.id);
-        res.statusCode = 200;
-        res.json({message: "OK", status: 200});
-    } catch {
-        // log this error to an error log file.
-        res.statusCode = 503;
-        res.json({message: "Service Unavailable", status: 503});
-    }
+router.delete("/:id", async (req, res) => {
+	if (DEBUG) console.log("ROUTE: /api/films DELETE " + req.params.id);
+	try {
+		await filmsDal.deletefilm(req.params.id);
+		res.statusCode = 200;
+		res.json({ message: "OK", status: 200 });
+	} catch {
+		// log this error to an error log file.
+		res.statusCode = 503;
+		res.json({ message: "Service Unavailable", status: 503 });
+	}
 });
 
 // list the active api routes

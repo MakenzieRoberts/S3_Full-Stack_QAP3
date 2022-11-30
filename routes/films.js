@@ -64,7 +64,6 @@ router.get("/:id/delete", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-	if (DEBUG) console.log("films.POST");
 	try {
 		await filmsDal.addfilm(
 			req.body.title,
@@ -77,7 +76,7 @@ router.post("/", async (req, res) => {
 		res.render("503");
 	}
 });
-
+// Q: js method to convert to title case
 // PUT, PATCH, and DELETE are part of HTTP, not a part of HTML
 // Therefore, <form method="PUT" ...> doesn't work, but it does work for RESTful API
 
@@ -96,7 +95,8 @@ router.put("/:id", async (req, res) => {
 		res.render("503");
 	}
 });
-
+// Q: js method to convert to uppercase
+//
 router.patch("/:id", async (req, res) => {
 	if (DEBUG) console.log("films.PATCH: " + req.params.id);
 	try {
