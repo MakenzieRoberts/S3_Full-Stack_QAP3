@@ -1,0 +1,18 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="create content">
+            <form action="/films/<%= locals.id %>?_method=PUT" method="POST">
+                <label>Replace film information:</br>
+                    <input type="text" name="title" value="<%= locals.title %>" required>
+                    <input type="text" name="releaseYear" value="<%= locals.releaseYear %>" required>
+                    <input type="text" name="rating" value="<%= locals.rating %>" required>
+                    <!-- // Those name variables are being picked up by post in api/films.js -->
+                </label></br>
+                <button>PUT</button>
+            </form>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>

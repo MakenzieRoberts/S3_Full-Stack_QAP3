@@ -1,0 +1,23 @@
+<html lang="en">
+	<%- include('./partials/head.ejs') %>
+	<body>
+		<%- include('./partials/nav.ejs') %>
+		<div class="film content">
+			<h2>Film:</h2>
+			<table>
+				<tr>
+					<th>Title</th>
+					<th>Release Year</th>
+					<th>Rating</th>
+				</tr>
+				<tr>
+					<td><%= anfilm.title %></td>
+					<td><%= anfilm.release_year %></td>
+					<td><%= anfilm.rating %></td>
+				</tr>
+			</table>
+			<br />
+		</div>
+	</body>
+	<%- include('./partials/foot.ejs') %>
+</html>
