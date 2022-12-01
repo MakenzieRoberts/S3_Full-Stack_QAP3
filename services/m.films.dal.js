@@ -29,28 +29,19 @@ async function getfilmByfilmId(id) {
 }
 
 async function addfilm(title, releaseYear, rating) {
-	// if (DEBUG)
-	// 	console.log("dal addfilm() releaseyear type: ", typeof releaseYear);
-	// releaseYear = parseInt(releaseYear);
+	if (DEBUG) console.log("films.mongo.dal.addFilm()");
+	// I wanted to play around with entering data into the database with a type other than
+	// string, and I wanted to make sure the ratings were always uppercase, so I did the
+	// conversion here.
 
-	// let oldDocument = JSON.parse(
-	// 	`{ "title": "` +
-	// 		title +
-	// 		`", "release_year": "` +
-	// 		releaseYear +
-	// 		`", "rating": "` +
-	// 		rating +
-	// 		`" }`
-	// );
-	// if (DEBUG)
-	// 	console.log(
-	// 		"dal addfilm() olddocument",
-	// 		oldDocument,
-	// 		" type:",
-	// 		typeof oldDocument
-	// 	);
+	// Ideally I would do some server-side validation as well, to make sure the release
+	// year is number, and if it failed then it would return an error to the client, but I
+	// don't know where I would put that in my file structure. Thankfully the client-side
+	// validation doesn't let you input non-numbers so it shouldn't be an issue. Also, I'm
+	// not sure if the conversion should be done here or in films.js before it gets passed
+	// to this function - but from what I read online it seems like many people like to
+	// put it here to separate the logic from the routing.
 
-	// Ideally I would do some server-side validation as well, to make sure the release year is number, and if it failed then it would return an error to the client, but I don't know where I would put that in my file structure. Thankfully the client-side validation doesn't let you input non-numbers. Also, I'm not sure if the conversion should be done here or in films.js before it gets passed to this function.
 	let newDocument = {
 		title: title,
 		release_year: Number(releaseYear),
@@ -68,30 +59,9 @@ async function addfilm(title, releaseYear, rating) {
 		console.log(error);
 	}
 }
-/* ********************************* old put ******************************** */
-// async function putfilm(id, title, releaseYear, rating) {
-// 	if (DEBUG) console.log("PUTFILM()", id, title, releaseYear, rating);
-// 	id = ObjectId(id);
-// 	try {
-// 		await dal.connect();
-// 		const result = await dal
-// 			.db("fs_qap3_db")
-// 			.collection("dvds")
-// 			.replaceOne(
-// 				{ _id: id },
-// 				{ title: title, release_year: releaseYear, rating: rating }
-// 			);
-// 		return result;
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// }
-/* ********************************* old put ******************************** */
-/* ******************************* new put try ****************************** */
+
 async function putfilm(id, title, releaseYear, rating) {
-	// if (DEBUG)
-	// 	console.log("dal putfilm() releaseyear type: ", typeof releaseYear);
-	// releaseYear = parseInt(releaseYear);
+	if (DEBUG) console.log("films.mongo.dal.putFilm()");
 	try {
 		await dal.connect();
 		const result = await dal
@@ -106,10 +76,9 @@ async function putfilm(id, title, releaseYear, rating) {
 		console.log(error);
 	}
 }
-/* ******************************* new put try ****************************** */
+
 async function patchfilm(id, title, releaseYear, rating) {
-	if (DEBUG)
-		console.log("dal patchfilm() releaseyear type: ", typeof releaseYear);
+	if (DEBUG) console.log("films.mongo.dal.patchFilm()");
 	try {
 		await dal.connect();
 		const result = await dal
@@ -127,7 +96,7 @@ async function patchfilm(id, title, releaseYear, rating) {
 }
 
 async function deletefilm(id) {
-	if (DEBUG) console.log("films.mongo.dal.deletefilm()");
+	if (DEBUG) console.log("films.mongo.dal.deleteFilm()");
 	try {
 		await dal.connect();
 		const result = await dal
