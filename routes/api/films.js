@@ -1,31 +1,28 @@
 var router = require("express").Router();
-//const filmsDal = require('../../services/pg.films.dal')
 const filmsDal = require("../../services/m.films.dal");
 
 // api/films
 router.get("/", async (req, res) => {
 	if (DEBUG) console.log("ROUTE: /api/films/ GET " + req.url);
 	try {
-		let thefilms = await filmsDal.getfilms();
-		res.json(thefilms);
+		let theFilms = await filmsDal.getfilms();
+		res.json(theFilms);
 	} catch {
-		// log this error to an error log file.
 		res.statusCode = 503;
 		res.json({ message: "Service Unavailable", status: 503 });
 	}
 });
+
 // api/films/:id
 router.get("/:id", async (req, res) => {
 	if (DEBUG) console.log("ROUTE: /api/films/:id GET " + req.url);
 	try {
-		let anfilm = await filmsDal.getfilmByfilmId(req.params.id);
-		if (anfilm.length === 0) {
-			// log this error to an error log file.
+		let aFilm = await filmsDal.getfilmByfilmId(req.params.id);
+		if (aFilm.length === 0) {
 			res.statusCode = 404;
 			res.json({ message: "Not Found", status: 404 });
-		} else res.json(anfilm);
+		} else res.json(aFilm);
 	} catch {
-		// log this error to an error log file.
 		res.statusCode = 503;
 		res.json({ message: "Service Unavailable", status: 503 });
 	}
@@ -34,7 +31,6 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
 	if (DEBUG) {
 		console.log("ROUTE: /api/films/ POST");
-		//    console.log(req);
 	}
 	try {
 		await filmsDal.addfilm(
@@ -45,21 +41,15 @@ router.post("/", async (req, res) => {
 		res.statusCode = 201;
 		res.json({ message: "Created", status: 201 });
 	} catch {
-		// log this error to an error log file.
 		res.statusCode = 503;
 		res.json({ message: "Service Unavailable", status: 503 });
 	}
 });
 
 router.put("/:id", async (req, res) => {
-	if (DEBUG)
-		console.log(
-			"API/ROUTER PUT",
-			req.params.id,
-			req.body.title,
-			req.body.releaseYear,
-			req.body.rating
-		);
+	if (DEBUG) {
+		console.log("ROUTE: /api/films/ PUT" + req.params.id);
+	}
 	try {
 		await filmsDal.putfilm(
 			req.params.id,
@@ -70,7 +60,6 @@ router.put("/:id", async (req, res) => {
 		res.statusCode = 200;
 		res.json({ message: "OK", status: 200 });
 	} catch {
-		// log this error to an error log file.
 		res.statusCode = 503;
 		res.json({ message: "Service Unavailable", status: 503 });
 	}
@@ -88,7 +77,6 @@ router.patch("/:id", async (req, res) => {
 		res.statusCode = 200;
 		res.json({ message: "OK", status: 200 });
 	} catch {
-		// log this error to an error log file.
 		res.statusCode = 503;
 		res.json({ message: "Service Unavailable", status: 503 });
 	}
@@ -101,13 +89,12 @@ router.delete("/:id", async (req, res) => {
 		res.statusCode = 200;
 		res.json({ message: "OK", status: 200 });
 	} catch {
-		// log this error to an error log file.
 		res.statusCode = 503;
 		res.json({ message: "Service Unavailable", status: 503 });
 	}
 });
 
-// list the active api routes
+// Lists the active api routes
 if (DEBUG) {
 	router.stack.forEach(function (r) {
 		if (r.route && r.route.path) {

@@ -3,26 +3,28 @@
 	<body>
 		<%- include('./partials/nav.ejs') %>
 		<div class="film content">
-			<h2>Film:</h2>
+			<% if (aFilm.length > 0 || aFilm.includes(null)) var film = aFilm[0] %>
+			<h2>(ID <%= film._id %>) Film:</h2>
+			<br />
 			<table>
-				<tr>
-					<th>Title</th>
-					<th>Release Year</th>
-					<th>Rating</th>
-				</tr>
-				<!-- Due to the validation in routes/films.js it should ne impossible to
-				get to this page if anfilm is empty/null, but I'm keeping this here as an
+				<tbody>
+					<tr>
+						<th>Title</th>
+						<th>Release Year</th>
+						<th>Rating</th>
+					</tr>
+					<!-- Due to the validation in routes/films.js it should ne impossible to
+				get to this page if aFilm is empty/null, but I'm keeping this here as an
 				extra precaution in case someone gets to this page, I don't want them to
 				trigger an ejs error. -->
-				<% if (anfilm.length > 0 || anfilm.includes(null)) { %> <%
-				anfilm.forEach(film => { %>
-				<tr>
-					<td><%= film.title %></td>
-					<td><%= film.release_year %></td>
-					<td><%= film.rating %></td>
-				</tr>
-				<% }) %> <% } %>
+					<tr>
+						<td><%= film.title %></td>
+						<td><%= film.release_year %></td>
+						<td><%= film.rating %></td>
+					</tr>
+				</tbody>
 			</table>
+
 			<br />
 		</div>
 	</body>
