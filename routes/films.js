@@ -4,51 +4,51 @@ const router = express.Router();
 const filmsDal = require("../services/m.films.dal");
 
 router.get("/", async (req, res) => {
-	// const thefilms = [
-	//     {first_name: 'Youn', last_name: 'Yuh-jung'},
-	//     {first_name: 'Laura', last_name: 'Dern'},
-	//     {first_name: 'Regina', last_name: 'King'}
+	// const theFilms = [
+	// 		{ "title": "Dazed Punk", "release_year": 2003, "rating": "PG-13" },
+	// 		{ "title": "Airplane Sierra", "release_year": 2007, "rating": "PG-13" },
+	// 		{ "title": "Dirty Ace", "release_year": 2002, "rating": "R" },
 	// ];
 	try {
-		let thefilms = await filmsDal.getfilms();
-		if (DEBUG) console.table(thefilms);
-		res.render("films.ejs", { thefilms });
+		let theFilms = await filmsDal.getfilms();
+		if (DEBUG) console.table(theFilms);
+		res.render("films.ejs", { theFilms });
 	} catch {
 		res.render("503");
 	}
 });
 
-router.get("/add", async (req, res) => {
-	// const thefilms = [
-	//     {first_name: 'Youn', last_name: 'Yuh-jung'},
-	//     {first_name: 'Laura', last_name: 'Dern'},
-	//     {first_name: 'Regina', last_name: 'King'}
+router.get("/listing", async (req, res) => {
+	// const theFilms = [
+	// 		{ "title": "Dazed Punk", "release_year": 2003, "rating": "PG-13" },
+	// 		{ "title": "Airplane Sierra", "release_year": 2007, "rating": "PG-13" },
+	// 		{ "title": "Dirty Ace", "release_year": 2002, "rating": "R" },
 	// ];
 	try {
-		let thefilms = await filmsDal.getfilms();
-		if (DEBUG) console.table(thefilms);
-		res.render("filmPost.ejs", { thefilms });
+		let theFilms = await filmsDal.getfilms();
+		if (DEBUG) console.table(theFilms);
+		res.render("filmListing.ejs", { theFilms });
 	} catch {
 		res.render("503");
 	}
 });
 
 router.get("/:id", async (req, res) => {
-	// const anfilm = [
-	//     {first_name: 'Regina', last_name: 'King'}
+	// const aFilm = [
+	// 		{ "title": "Dazed Punk", "release_year": 2003, "rating": "PG-13" }
 	// ];
 	if (DEBUG) console.log(req.params.id);
 	try {
-		let anfilm = await filmsDal.getfilmByfilmId(req.params.id);
-		anfilm = new Array(anfilm);
-		if (DEBUG) console.log({ anfilm });
-		// This validation was originally 'if (anfilm.length === 0)', but when using
+		let aFilm = await filmsDal.getfilmByfilmId(req.params.id);
+		aFilm = new Array(aFilm);
+		if (DEBUG) console.log({ aFilm });
+		// This validation was originally 'if (aFilm.length === 0)', but when using
 		// findOne(), if a record is found it returns the object, and if not it returns null. Even if I put the result object into an array, if the result is
 		// null the array will still 1 because it contains '[null]', therefore that
-		// validation would fail. So instead, I'm going to add 'if (anfilm === null)' as well.
-		if (anfilm.length === 0 || anfilm.includes(null))
+		// validation would fail. So instead, I'm going to add 'if (aFilm === null)' as well.
+		if (aFilm.length === 0 || aFilm.includes(null))
 			res.render("norecord.ejs", { id: req.params.id });
-		else res.render("film.ejs", { anfilm });
+		else res.render("film.ejs", { aFilm });
 	} catch {
 		res.render("503");
 	}
@@ -84,22 +84,18 @@ router.get("/:id/delete", async (req, res) => {
 	});
 });
 
-router.post("/add", async (req, res) => {
+router.post("/", async (req, res) => {
 	try {
 		await filmsDal.addfilm(
 			req.body.title,
 			req.body.releaseYear,
 			req.body.rating
 		);
-		res.redirect("/films/add");
+		res.redirect("/films/");
 	} catch {
-		// log this error to an error log file.
 		res.render("503");
 	}
 });
-// Q: js method to convert to title case
-// PUT, PATCH, and DELETE are part of HTTP, not a part of HTML
-// Therefore, <form method="PUT" ...> doesn't work, but it does work for RESTful API
 
 router.put("/:id", async (req, res) => {
 	if (DEBUG) console.log("films.PUT: " + req.params.id);
@@ -112,12 +108,10 @@ router.put("/:id", async (req, res) => {
 		);
 		res.redirect("/films/");
 	} catch {
-		// log this error to an error log file.
 		res.render("503");
 	}
 });
-// Q: js method to convert to uppercase
-//
+
 router.patch("/:id", async (req, res) => {
 	if (DEBUG) console.log("films.PATCH: " + req.params.id);
 	try {
@@ -129,7 +123,6 @@ router.patch("/:id", async (req, res) => {
 		);
 		res.redirect("/films/");
 	} catch {
-		// log this error to an error log file.
 		res.render("503");
 	}
 });
@@ -140,7 +133,6 @@ router.delete("/:id", async (req, res) => {
 		await filmsDal.deletefilm(req.params.id);
 		res.redirect("/films/");
 	} catch {
-		// log this error to an error log file.
 		res.render("503");
 	}
 });

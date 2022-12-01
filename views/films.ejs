@@ -4,11 +4,10 @@
 		<%- include('./partials/nav.ejs') %>
 		<div class="films content">
 			<form action="/films" method="POST">
-				<!-- ! PUT THIS INLINE HTML IN STYLE.CSS -->
 				<table>
 					<tr>
 						<th id="description-header" colspan="4">
-							<label>Films Currently in Database</label>
+							<label>Films Currently In Database Table</label>
 						</th>
 					</tr>
 					<tr>
@@ -17,7 +16,7 @@
 						<th>Rating</th>
 						<th>Options</th>
 					</tr>
-					<% if (thefilms.length > 0) { %> <% thefilms.forEach(film => { %>
+					<% if (theFilms.length > 0) { %> <% theFilms.forEach(film => { %>
 					<tr>
 						<td><%= film.title %></td>
 						<td><%= film.release_year %></td>
@@ -40,7 +39,7 @@
 					<% }) %> <% } %>
 
 					<br /><br />
-					<!-- <tr>
+					<tr>
 						<th id="description-header" colspan="4">
 							<label>Add New Film</label>
 						</th>
@@ -59,7 +58,7 @@
 								type="text"
 								id="title"
 								name="title"
-								value="<%= locals.title %>"
+								placeholder="eg. Cinderella"
 								required
 							/>
 						</td>
@@ -71,8 +70,7 @@
 								oninput="this.setCustomValidity('')"
 								id="release-year"
 								name="releaseYear"
-								value="<%= locals.releaseYear %>"
-								placeholder="Enter number..."
+								placeholder="eg. 2002"
 								required
 							/>
 						</td>
@@ -81,12 +79,12 @@
 								type="text"
 								id="rating"
 								name="rating"
-								value="<%= locals.rating %>"
+								placeholder="eg. G, PG, PG-13..."
 								required
 							/>
 						</td>
 						<br />
-					</tr> -->
+					</tr>
 				</table>
 			</form>
 		</div>

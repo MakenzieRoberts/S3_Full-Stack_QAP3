@@ -1,0 +1,33 @@
+<html lang="en">
+	<%- include('./partials/head.ejs') %>
+	<body>
+		<%- include('./partials/nav.ejs') %>
+		<div class="films content">
+			<!-- ! PUT THIS INLINE HTML IN STYLE.CSS -->
+			<table>
+				<tbody>
+					<tr>
+						<th id="description-header" colspan="4">
+							<label>Films Listing</label>
+						</th>
+					</tr>
+					<tr>
+						<th>Title</th>
+						<th>Release Year</th>
+						<th>Rating</th>
+					</tr>
+					<% if (theFilms.length > 0) { %> <% theFilms.forEach(film => { %>
+					<tr>
+						<td><%= film.title %></td>
+						<td><%= film.release_year %></td>
+						<td><%= film.rating %></td>
+					</tr>
+					<% }) %> <% } %>
+
+					<br /><br />
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<%- include('./partials/foot.ejs') %>
+</html>
