@@ -8,22 +8,21 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/prawstho/WeekEleven.git"
+		"url": "git+https://github.com/MakenzieRoberts/S3_Full-Stack_QAP3"
 	},
 	"keywords": [],
-	"author": "Peter Rawsthorne",
+	"author": "Makenzie Roberts",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/prawstho/WeekEleven/issues"
+		"url": "https://github.com/MakenzieRoberts/S3_Full-Stack_QAP3/issues"
 	},
-	"homepage": "https://github.com/prawstho/WeekEleven#readme",
+	"homepage": "https://github.com/MakenzieRoberts/S3_Full-Stack_QAP3#readme",
 	"dependencies": {
 		"dotenv": "^16.0.3",
 		"ejs": "^3.1.8",
 		"express": "^4.18.2",
 		"method-override": "^3.0.0",
 		"mongodb": "^4.12.1",
-		"nodemon": "^2.0.20",
-		"pg": "^8.8.0"
+		"nodemon": "^2.0.20"
 	}
 }
