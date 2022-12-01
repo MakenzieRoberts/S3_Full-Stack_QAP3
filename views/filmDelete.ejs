@@ -10,20 +10,22 @@
 					<!-- Fix unnessecary <br>s with css -->
 
 					<table>
-						<tr>
-							<th>Title</th>
-							<th>Release Year</th>
-							<th>Rating</th>
-							<th rowspan="3">
-								<button>DELETE</button>
-							</th>
-						</tr>
+						<tbody>
+							<tr>
+								<th>Title</th>
+								<th>Release Year</th>
+								<th>Rating</th>
+								<th rowspan="3">
+									<button>DELETE</button>
+								</th>
+							</tr>
 
-						<tr>
-							<td><%= locals.title %></td>
-							<td><%= locals.releaseYear %></td>
-							<td><%= locals.rating %></td>
-						</tr>
+							<tr>
+								<td><%= locals.title %></td>
+								<td><%= locals.releaseYear %></td>
+								<td><%= locals.rating %></td>
+							</tr>
+						</tbody>
 					</table>
 
 					<!-- <input type="text" id="<%= locals.id %>" name="film" value="<%= locals.title %> <%= locals.releaseYear %> <%= locals.rating %>" readonly> -->
