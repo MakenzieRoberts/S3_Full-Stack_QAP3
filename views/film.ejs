@@ -10,11 +10,18 @@
 					<th>Release Year</th>
 					<th>Rating</th>
 				</tr>
+				<!-- Due to the validation in routes/films.js it should ne impossible to
+				get to this page if anfilm is empty/null, but I'm keeping this here as an
+				extra precaution in case someone gets to this page, I don't want them to
+				trigger an ejs error. -->
+				<% if (anfilm.length > 0 || anfilm.includes(null)) { %> <%
+				anfilm.forEach(film => { %>
 				<tr>
-					<td><%= anfilm.title %></td>
-					<td><%= anfilm.release_year %></td>
-					<td><%= anfilm.rating %></td>
+					<td><%= film.title %></td>
+					<td><%= film.release_year %></td>
+					<td><%= film.rating %></td>
 				</tr>
+				<% }) %> <% } %>
 			</table>
 			<br />
 		</div>

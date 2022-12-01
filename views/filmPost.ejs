@@ -1,0 +1,96 @@
+<html lang="en">
+	<%- include('./partials/head.ejs') %>
+	<body>
+		<%- include('./partials/nav.ejs') %>
+		<div class="films content">
+			<form action="/films/add" method="POST">
+				<!-- ! PUT THIS INLINE HTML IN STYLE.CSS -->
+				<table>
+					<tr>
+						<th id="description-header" colspan="4">
+							<label>Films Currently in Database</label>
+						</th>
+					</tr>
+					<tr>
+						<th>Title</th>
+						<th>Release Year</th>
+						<th>Rating</th>
+						<th>Options</th>
+					</tr>
+					<% if (thefilms.length > 0) { %> <% thefilms.forEach(film => { %>
+					<tr>
+						<td><%= film.title %></td>
+						<td><%= film.release_year %></td>
+						<td><%= film.rating %></td>
+						<td>
+							<a
+								href="/films/<%=film._id%>/edit?title=<%=film.title%>&releaseYear=<%=film.release_year%>&rating=<%=film.rating%>"
+								>edit</a
+							>
+							<a
+								href="/films/<%=film._id%>/delete?title=<%=film.title%>&releaseYear=<%=film.release_year%>&rating=<%=film.rating%>"
+								>delete</a
+							>
+							<a
+								href="/films/<%=film._id%>/replace?title=<%=film.title%>&releaseYear=<%=film.release_year%>&rating=<%=film.rating%>"
+								>replace</a
+							>
+						</td>
+					</tr>
+					<% }) %> <% } %>
+
+					<br /><br />
+					<tr>
+						<th id="description-header" colspan="4">
+							<label>Add New Film</label>
+						</th>
+					</tr>
+					<tr>
+						<th><label for="title">Title</label></th>
+						<th><label for="release-year">Release Year</label></th>
+						<th><label for="rating">Rating</label></th>
+						<th rowspan="3">
+							<button>POST</button>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<!-- The values may not be necessary? Pater may have copied them over from his patch/put inputs with autofill -->
+							<input
+								type="text"
+								id="title"
+								name="title"
+								value="<%= locals.title %>"
+								required
+							/>
+						</td>
+						<td>
+							<input
+								type="text"
+								pattern="^(0|[1-9][0-9]*)$"
+								oninvalid="this.setCustomValidity('Input must be a valid number.')"
+								oninput="this.setCustomValidity('')"
+								id="release-year"
+								name="releaseYear"
+								value="<%= locals.releaseYear %>"
+								placeholder="Enter number..."
+								required
+							/>
+						</td>
+						<td>
+							<input
+								type="text"
+								id="rating"
+								name="rating"
+								value="<%= locals.rating %>"
+								required
+							/>
+						</td>
+						<br />
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+	<%- include('./partials/foot.ejs') %>
+</html>

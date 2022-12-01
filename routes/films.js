@@ -18,15 +18,36 @@ router.get("/", async (req, res) => {
 	}
 });
 
+router.get("/add", async (req, res) => {
+	// const thefilms = [
+	//     {first_name: 'Youn', last_name: 'Yuh-jung'},
+	//     {first_name: 'Laura', last_name: 'Dern'},
+	//     {first_name: 'Regina', last_name: 'King'}
+	// ];
+	try {
+		let thefilms = await filmsDal.getfilms();
+		if (DEBUG) console.table(thefilms);
+		res.render("filmPost.ejs", { thefilms });
+	} catch {
+		res.render("503");
+	}
+});
+
 router.get("/:id", async (req, res) => {
 	// const anfilm = [
 	//     {first_name: 'Regina', last_name: 'King'}
 	// ];
 	if (DEBUG) console.log(req.params.id);
 	try {
-		let anfilm = await filmsDal.getfilmByfilmId(req.params.id); // from postgresql
-		if (DEBUG) console.log("INVALID ID ROUTE TEST: ", anfilm);
-		if (anfilm === null) res.render("norecord.ejs", { id: req.params.id });
+		let anfilm = await filmsDal.getfilmByfilmId(req.params.id);
+		anfilm = new Array(anfilm);
+		if (DEBUG) console.log({ anfilm });
+		// This validation was originally 'if (anfilm.length === 0)', but when using
+		// findOne(), if a record is found it returns the object, and if not it returns null. Even if I put the result object into an array, if the result is
+		// null the array will still 1 because it contains '[null]', therefore that
+		// validation would fail. So instead, I'm going to add 'if (anfilm === null)' as well.
+		if (anfilm.length === 0 || anfilm.includes(null))
+			res.render("norecord.ejs", { id: req.params.id });
 		else res.render("film.ejs", { anfilm });
 	} catch {
 		res.render("503");
@@ -63,14 +84,14 @@ router.get("/:id/delete", async (req, res) => {
 	});
 });
 
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
 	try {
 		await filmsDal.addfilm(
 			req.body.title,
 			req.body.releaseYear,
 			req.body.rating
 		);
-		res.redirect("/films/");
+		res.redirect("/films/add");
 	} catch {
 		// log this error to an error log file.
 		res.render("503");
