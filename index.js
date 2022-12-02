@@ -1,13 +1,15 @@
 const express = require("express");
 const methodOverride = require("method-override");
 const app = express();
+const bodyParser = require("body-parser");
 const PORT = 3000;
 
 global.DEBUG = true;
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true })); // This is important!
-app.use(methodOverride("_method")); // So is this!
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true })); // Important!
+app.use(methodOverride("_method")); // Important!
 
 app.get("/", (req, res) => {
 	res.render("index.ejs");

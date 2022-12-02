@@ -1,12 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap");
 
 /* ********************************* General ******************************** */
+
 body {
-	max-width: 1200px;
+	max-width: 700px;
 	margin: 20px auto;
-	padding: 0 20px;
 	font-family: "Open Sans", sans-serif;
-	max-width: 1200px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -22,8 +21,20 @@ h1 {
 }
 
 footer {
-	position: absolute;
+	background-color: black;
+	color: white;
+	position: fixed;
 	bottom: 0;
+	width: 100%;
+}
+
+/* ******************************** Main DIVs ******************************* */
+
+.films {
+	width: 100%;
+}
+.modify {
+	max-width: 400px;
 }
 
 /* *********************************** Nav ********************************** */
@@ -36,6 +47,7 @@ nav {
 	padding-bottom: 20px;
 	text-align: center;
 	text-transform: uppercase;
+	width: 100%;
 }
 nav ul {
 	align-items: center;
@@ -55,27 +67,37 @@ nav h1 {
 nav p,
 nav a {
 	color: #777;
-	font-weight: 300;
 }
 
 /* ********************************** Table ********************************* */
 
+table {
+	width: 100%;
+	table-layout: auto;
+}
+#film-post-table {
+	table-layout: fixed;
+}
 table,
 th,
 td {
+	box-sizing: border-box;
 	justify-self: center;
 	text-align: center;
-	/* border: 2px solid grey; */
 	border: 1px solid rgb(173, 173, 173);
 	border-collapse: collapse;
-	padding: 4px 12px;
-	margin: 0 auto;
+	margin: auto;
 }
 th#description-header {
 	color: white;
 	background-color: black;
 }
-
+tr {
+	width: auto;
+}
+td {
+	padding: 4px 10px;
+}
 /* ********************************** Input ********************************* */
 
 label {
@@ -83,9 +105,16 @@ label {
 	text-transform: capitalize;
 }
 input {
-	margin: 20px 0;
+	display: inline;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 10px 0;
 }
 button {
-	width: 100%;
 	font-weight: bold;
+	height: 50px;
+	width: 100%;
+}
+#post-button {
+	width: 90%;
 }

@@ -1,8 +1,32 @@
 [
-	{ "title": "Dazed Punk", "release_year": 2003, "rating": "PG-13" },
-	{ "title": "Airplane Sierra", "release_year": 2007, "rating": "PG-13" },
-	{ "title": "Dirty Ace", "release_year": 2002, "rating": "R" },
-	{ "title": "Lord Arizona", "release_year": 2009, "rating": "R" },
-	{ "title": "Informer Double", "release_year": 2010, "rating": "PG-13" },
-	{ "title": "Owl Altar", "release_year": 2005, "rating": "R" }
+	{
+		"title": "Dazed Punk",
+		"release_year": 2003,
+		"rating": "PG-13"
+	},
+	{
+		"title": "Airplane Sierra",
+		"release_year": 2007,
+		"rating": "PG-13"
+	},
+	{
+		"title": "Dirty Ace",
+		"release_year": 2002,
+		"rating": "R"
+	},
+	{
+		"title": "Lord Arizona",
+		"release_year": 2009,
+		"rating": "R"
+	},
+	{
+		"title": "Informer Double",
+		"release_year": 2010,
+		"rating": "PG-13"
+	},
+	{
+		"title": "Owl Altar",
+		"release_year": 2005,
+		"rating": "R"
+	}
 ]

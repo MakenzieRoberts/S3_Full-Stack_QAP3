@@ -2,7 +2,7 @@
     <%- include('./partials/head.ejs') %>
     <body>
         <%- include('./partials/nav.ejs') %>
-        <div class="create content">
+        <div class="modify content">
             <form action="/films/<%= locals.id %>?_method=PATCH" method="POST">
                 <label>Edit Film Data:</br>
                     <input type="text" name="title" value="<%= locals.title %>" required>

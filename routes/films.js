@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-// const filmsDal = require('../services/pg.films.dal')
 const filmsDal = require("../services/m.films.dal");
 
+/* **************************** Get + Render EJS **************************** */
+
 router.get("/", async (req, res) => {
-	// const theFilms = [
+	// Data Example:
+	// [
 	// 		{ "title": "Dazed Punk", "release_year": 2003, "rating": "PG-13" },
 	// 		{ "title": "Airplane Sierra", "release_year": 2007, "rating": "PG-13" },
 	// 		{ "title": "Dirty Ace", "release_year": 2002, "rating": "R" },
@@ -19,7 +21,8 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/listing", async (req, res) => {
-	// const theFilms = [
+	// Data Example:
+	// [
 	// 		{ "title": "Dazed Punk", "release_year": 2003, "rating": "PG-13" },
 	// 		{ "title": "Airplane Sierra", "release_year": 2007, "rating": "PG-13" },
 	// 		{ "title": "Dirty Ace", "release_year": 2002, "rating": "R" },
@@ -34,12 +37,12 @@ router.get("/listing", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-	// const aFilm = [
+	// Data Example:
+	// [
 	// 		{ "title": "Dazed Punk", "release_year": 2003, "rating": "PG-13" }
 	// ];
-	if (DEBUG) console.log(req.params.id);
 	try {
-		let aFilm = await filmsDal.getfilmByfilmId(req.params.id);
+		let aFilm = await filmsDal.getFilmByFilmId(req.params.id);
 		aFilm = new Array(aFilm);
 		if (DEBUG) console.log({ aFilm });
 		// This validation was originally 'if (aFilm.length === 0)', but when using
@@ -84,9 +87,11 @@ router.get("/:id/delete", async (req, res) => {
 	});
 });
 
+/* ********************* Calling HTTP Methods + Redirect ******************** */
+
 router.post("/", async (req, res) => {
 	try {
-		await filmsDal.addfilm(
+		await filmsDal.addFilm(
 			req.body.title,
 			req.body.releaseYear,
 			req.body.rating
@@ -100,7 +105,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
 	if (DEBUG) console.log("films.PUT: " + req.params.id);
 	try {
-		await filmsDal.putfilm(
+		await filmsDal.putFilm(
 			req.params.id,
 			req.body.title,
 			req.body.releaseYear,
@@ -115,7 +120,7 @@ router.put("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
 	if (DEBUG) console.log("films.PATCH: " + req.params.id);
 	try {
-		await filmsDal.patchfilm(
+		await filmsDal.patchFilm(
 			req.params.id,
 			req.body.title,
 			req.body.releaseYear,
@@ -130,7 +135,7 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 	if (DEBUG) console.log("films.DELETE: " + req.params.id);
 	try {
-		await filmsDal.deletefilm(req.params.id);
+		await filmsDal.deleteFilm(req.params.id);
 		res.redirect("/films/");
 	} catch {
 		res.render("503");

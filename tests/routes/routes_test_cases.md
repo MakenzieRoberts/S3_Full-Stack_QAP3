@@ -9,7 +9,7 @@
 
     Ideally, in the future I could add authentication to make sure only staff members are able to access post/put/patch/delete, but for now I just separated them into different pages.
 
-    While a customer can visit 'localhost:3000/films/listing' to view a list of films, the route structure for the API is simply 'localhost:3000/films/<param><query>' as per your examples.
+    While a customer can visit 'localhost:3000/films/listing' to view a list of films, the route structure for the API is simply 'localhost:3000/api/films/<param><query>' as per your examples.
 -->
 
 ---

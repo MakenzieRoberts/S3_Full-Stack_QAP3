@@ -4,7 +4,7 @@
 		<%- include('./partials/nav.ejs') %>
 		<div class="films content">
 			<form action="/films" method="POST">
-				<table>
+				<table id="film-post-table">
 					<tr>
 						<th id="description-header" colspan="4">
 							<label>Films Currently In Database Table</label>
@@ -49,7 +49,7 @@
 						<th><label for="release-year">Release Year</label></th>
 						<th><label for="rating">Rating</label></th>
 						<th rowspan="3">
-							<button>POST</button>
+							<button id="post-button">POST</button>
 						</th>
 					</tr>
 					<tr>

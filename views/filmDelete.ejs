@@ -2,13 +2,11 @@
 	<%- include('./partials/head.ejs') %>
 	<body>
 		<%- include('./partials/nav.ejs') %>
-		<div class="create content">
+		<div class="modify content">
 			<form action="/films/<%= locals.id %>?_method=DELETE" method="POST">
 				<br />
 				<label
 					>Are you sure you want to delete this film?<br /><br />
-					<!-- Fix unnessecary <br>s with css -->
-
 					<table>
 						<tbody>
 							<tr>
@@ -27,10 +25,7 @@
 							</tr>
 						</tbody>
 					</table>
-
-					<!-- <input type="text" id="<%= locals.id %>" name="film" value="<%= locals.title %> <%= locals.releaseYear %> <%= locals.rating %>" readonly> -->
 				</label>
-				<!-- <button>DELETE</button> -->
 			</form>
 		</div>
 	</body>
